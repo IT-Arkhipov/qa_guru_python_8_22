@@ -4,7 +4,6 @@ from selene import browser, have, be
 
 
 def test_search():
-
     with step('Skip wellcome screen'):
         browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/fragment_onboarding_skip_button')).click()
 
@@ -34,7 +33,7 @@ def test_getting_started():
                         ).should(have.text('Reading lists with sync'))
         browser.element((AppiumBy.ID, "org.wikipedia.alpha:id/fragment_onboarding_forward_button")).click()
 
-    with (step('Check final initial page and accept')):
+    with (step('Check final page and accept')):
         browser.element((AppiumBy.ID, "org.wikipedia.alpha:id/primaryTextView")
                         ).should(have.text('Send anonymous data'))
         browser.element((AppiumBy.ID, "org.wikipedia.alpha:id/acceptButton")).click()

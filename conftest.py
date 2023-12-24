@@ -6,7 +6,6 @@ import os
 from selene import browser, support
 from utils import config, attach
 from appium import webdriver
-
 from utils.config import settings
 
 
