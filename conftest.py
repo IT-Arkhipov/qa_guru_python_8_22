@@ -26,11 +26,13 @@ def context(request):
 @pytest.fixture(scope='function', autouse=True)
 def mobile_management(context):
     settings.context = context
+
     with allure.step('Initialization'):
+        options = config.to_driver_options()
+        print(settings.remote_url)
         browser.config.driver = webdriver.Remote(
-            # settings.remote_url,
-            "http://127.0.0.1:4723/wd/hub",
-            options=config.to_driver_options()
+            settings.remote_url,
+            options=options
         )
 
     browser.config.timeout = float(os.getenv('timeout', '10.0'))
