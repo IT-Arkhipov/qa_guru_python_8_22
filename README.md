@@ -19,5 +19,5 @@ pytest .
 ### Xiaomi Mi A2
 `pytest . --context=local_real`
 
-### Открыти отчетов Allure (если установлен фреймворк)
+### Открытие отчетов Allure (если установлен фреймворк)
 `allure serve ./allure-results`
