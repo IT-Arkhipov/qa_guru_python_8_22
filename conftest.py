@@ -18,9 +18,14 @@ def pytest_addoption(parser):
     )
 
 
+@pytest.fixture
+def context(request):
+    return request.config.getoption("--context")
+
+
 @pytest.fixture(scope='function', autouse=True)
-def mobile_management(request):
-    settings.context = request.config.getoption("--context")
+def mobile_management(context):
+    settings.context = context
     with allure.step('Initialization'):
         browser.config.driver = webdriver.Remote(
             # settings.remote_url,
