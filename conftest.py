@@ -23,7 +23,8 @@ def mobile_management(request):
     settings.context = request.config.getoption("--context")
     with allure.step('Initialization'):
         browser.config.driver = webdriver.Remote(
-            settings.remote_url,
+            # settings.remote_url,
+            "http://127.0.0.1:4723/wd/hub",
             options=config.to_driver_options()
         )
 
@@ -43,5 +44,5 @@ def mobile_management(request):
     with allure.step('tear down app session with id: ' + session_id):
         browser.quit()
 
-    if config.runs_on_bstack:
+    if settings.context == 'bstack':
         attach.video(session_id)

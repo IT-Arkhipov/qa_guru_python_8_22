@@ -22,11 +22,6 @@ settings = Settings(
     user_name=os.getenv('user_name'),
     access_key=os.getenv('access_key'),
 )
-load_dotenv(file.abs_path_from_project(f'.env.{settings.context}'))
-settings.app = os.getenv('app')
-settings.remote_url = os.getenv('remote_url')
-
-runs_on_bstack = os.getenv('app').startswith('bs://')
 
 
 def to_driver_options():
@@ -35,6 +30,10 @@ def to_driver_options():
 
     if settings.context not in ['local_emulator', 'local_real', 'bstack']:
         raise RuntimeError('Wrong context type!')
+
+    load_dotenv(file.abs_path_from_project(f'.env.{settings.context}'))
+    settings.app = os.getenv('app')
+    settings.remote_url = os.getenv('remote_url')
 
     if settings.context == 'bstack':
         options.set_capability('platformVersion', '9.0')
@@ -51,6 +50,7 @@ def to_driver_options():
             },
         )
     else:
-        options.set_capability('appWaitActivity', os.getenv('appWaitActivity'))
         options.set_capability('udid', os.getenv('udid'))
+        options.set_capability('app', settings.app)
+        options.set_capability('appWaitActivity', os.getenv('appWaitActivity'))
     return options
