@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "qa-guru-python-8-21"
+version = "0.1.0"
+description = ""
+authors = ["Andrei Arkhipov <it.arkhipov@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+allure-pytest="2.13.2"
+Appium-Python-Client="3.1.1"
+pydantic="2.5.3"
+pytest="7.4.3"
+selene="2.0.0rc4"
+selenium = "4.16.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
