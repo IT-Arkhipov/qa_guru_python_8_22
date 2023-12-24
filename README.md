@@ -3,7 +3,8 @@
 ### Подготовка для запуска, создание окружения
 ```
 python -m venv .venv
-source .venv/bin/activate
+Linux: source .venv/bin/activate
+Windows: .venv\Script\activate
 pip install poetry
 poetry install
 pytest .
