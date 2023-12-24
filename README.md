@@ -1,11 +1,13 @@
 ## Запуск тестов в различном окружении
 
 ### Подготовка для запуска, создание окружения
-`python -m venv .venv  
- source .venv/bin/activate  
- pip install poetry  
- poetry install  
- pytest .`
+```
+python -m venv .venv
+source .venv/bin/activate
+pip install poetry
+poetry install
+pytest .
+```
 
 ### Browserstack (по умолчанию, можно опустить)
 `pytest . --context=bstack`
