@@ -161,3 +161,4 @@ cython_debug/
 /tests/web/allure-results/
 allure-results/
 .idea/
+/.env.credentials
