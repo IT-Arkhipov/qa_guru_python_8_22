@@ -10,8 +10,17 @@ from appium import webdriver
 from utils.config import settings
 
 
+def pytest_addoption(parser):
+    parser.addoption(
+        "--context",
+        default="bstack",
+        help="Specify the test context"
+    )
+
+
 @pytest.fixture(scope='function', autouse=True)
-def mobile_management():
+def mobile_management(request):
+    settings.context = request.config.getoption("--context")
     with allure.step('Initialization'):
         browser.config.driver = webdriver.Remote(
             settings.remote_url,

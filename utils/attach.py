@@ -1,13 +1,14 @@
 import allure
-from utils import config
+
 from selene import browser
+from utils.config import settings
 
 
 def video(session_id):
     import requests
     bstack_session = requests.get(
         f'https://api.browserstack.com/app-automate/sessions/{session_id}.json',
-        auth=(config.user_name, config.access_key),
+        auth=(settings.user_name, settings.access_key),
     ).json()
     video_url = bstack_session['automation_session']['video_url']
 

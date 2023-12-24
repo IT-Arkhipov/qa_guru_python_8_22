@@ -6,8 +6,11 @@ from dotenv import load_dotenv
 from utils import file
 
 
+context_type = Literal['local_emulator', 'local_real', 'bstack']
+
+
 class Settings(BaseModel):
-    context: Literal['local_emulator', 'local_real', 'bstack'] = 'bstack'
+    context: context_type = 'bstack'
     user_name: str = os.getenv('user_name')
     access_key: str = os.getenv('access_key')
     app: str = os.getenv('app', '')
@@ -30,8 +33,13 @@ def to_driver_options():
     from appium.options.android import UiAutomator2Options
     options = UiAutomator2Options()
 
+    if settings.context not in ['local_emulator', 'local_real', 'bstack']:
+        raise RuntimeError('Wrong context type!')
+
     if settings.context == 'bstack':
         options.set_capability('platformVersion', '9.0')
+        options.set_capability('deviceName', 'Google Pixel 3')
+        options.set_capability('app', settings.app)
         options.set_capability(
             'bstack:options', {
                 'projectName': 'First Python project',
