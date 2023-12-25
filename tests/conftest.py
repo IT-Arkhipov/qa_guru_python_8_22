@@ -2,11 +2,12 @@ import allure
 import pytest
 import allure_commons
 import os
+import config
 
 from selene import browser, support
-from utils import config, attach
+from utils import attach
 from appium import webdriver
-from utils.config import settings
+from config import settings
 
 
 def pytest_addoption(parser):

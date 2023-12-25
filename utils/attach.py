@@ -1,7 +1,7 @@
 import allure
 
 from selene import browser
-from utils.config import settings
+from config import settings
 
 
 def video(session_id):
